@@ -22,42 +22,7 @@
      }
    });
 
-   $("#frm_login").on("submit", function (event) {
-     event.preventDefault();
-
-     var $frm = $(this);
-     var Username = $frm.find("input[name='Username']").val().trim();
-     var Password = $frm.find("input[name='Password']").val().trim();
-
-     $.post("actions/login.php", { 
-       Username: Username, 
-       Password: Password 
-     }, function (data) {
-       var response = JSON.parse(data);
-
-       if (response.response === "OK") {
-         $frm[0].reset();
-         if ($("#save-login").is(":checked")) {
-           setCookie("Username", Username, 7);
-           setCookie("Password", Password, 7);
-         }
-
-         var role = parseInt(response.role);
-         if (role === 1) {
-           window.location.assign("admin/index.php");
-         }else if (role === 3){
-           window.location.assign("index.php");
-         } else if (role === 0){
-           window.location.assign("home/index.php");
-         } else {
-           window.location.assign("login.php");
-         }
-
-       } else {
-         console.log("Login failed: " + response.message);
-       }
-     });
-   });
+   
  });
 
  function setCookie(name, value, days) {
@@ -75,3 +40,30 @@
  function deleteCookie(name) {
    document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
  }
+
+
+/*Function to show login form cashier*/
+ function loginCashier() {
+   const modal = new bootstrap.Modal(
+     document.getElementById('modal-login-cashier')
+   );
+   modal.show();
+ }
+
+
+ /*Function to show login form admin*/
+  function loginAdmin() {
+    const modal = new bootstrap.Modal(
+      document.getElementById('modal-login-admin')
+    );
+    modal.show();
+  }
+
+  /*Function to show login form backoffice*/
+   function lognBackOffice() {
+     const modal = new bootstrap.Modal(
+       document.getElementById('modal-login-backoffice')
+     );
+     modal.show();
+   }
+

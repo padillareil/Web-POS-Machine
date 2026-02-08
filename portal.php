@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>OneService</title>
+  <title>Point of Sale</title>
   <link rel="stylesheet" href="assets/plugins/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" href="assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
   <link rel="stylesheet" type="text/css" href="assets/plugins/bootstrap/dist/css/bootstrap.min.css">
@@ -17,36 +17,79 @@
   <link rel="icon" href="assets/image/logo/favicon.png">
 </head>
 <body>
-  <div class="container vh-100 d-flex justify-content-center align-items-center">
-    <div class="col-md-6 col-lg-4">
-      <div class="container min-vh-100 d-flex flex-column justify-content-center align-items-center">
-        <div class="text-center mb-4">
-          <h3 class="mb-1">OneService</h3>
-          <p class="text-muted mb-0">Welcome to Portal</p>
+  <nav class="navbar navbar-expand-md navbar-dark mb-4 py-5">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">POS</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Register</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+  <div class="container" style="margin-top: 20vh;">
+    <div class="row justify-content-center">
+      <div class="col-md-4 mb-3">
+        <div class="card h-100 shadow rounded-4 text-center border-0 bg-danger-subtle" onclick="loginAdmin()">
+          <div class="card-body p-5">
+            <div class="mb-3">
+              <i class="bi bi-shield-lock-fill fs-1 text-danger"></i>
+            </div>
+            <h4 class="fw-bold">Admin</h4>
+            <p class="text-muted small mt-2">
+              Full system control, user management, configuration, and reports.
+            </p>
+            <span class="badge bg-danger mt-2">Full Access</span>
+          </div>
         </div>
-        <form id="frm_login" style="max-width: 300px; width: 100%;">
-          <div class="form-floating mb-3 position-relative">
-            <input type="password" name="portal-id" id="portal-id" class="form-control" title="Enter Portal ID"  required>
-            <label for="portal-id">Portal ID</label>
-            <i class="bi bi-eye-slash position-absolute top-50 end-0 translate-middle-y me-3" 
-               id="togglePassword" style="cursor: pointer;"></i>
+      </div>
+      <div class="col-md-4 mb-3">
+        <div class="card h-100 shadow rounded-4 text-center border-0 bg-primary-subtle" onclick="loginCashier()">
+          <div class="card-body p-5">
+            <div class="mb-3">
+              <i class="bi bi-receipt-cutoff fs-1 text-primary"></i>
+            </div>
+            <h4 class="fw-bold">Cashier</h4>
+            <p class="text-muted small mt-2">
+              Process sales, handle payments, print receipts, and POS operations.
+            </p>
+            <span class="badge bg-primary mt-2">POS Access</span>
           </div>
-
-
-          <div class="form-checks ml-4 mb-4">
-            <input class="form-check-input" type="checkbox" id="save-login">
-            <label class="form-check-label" for="save-login">Remember me</label>
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <div class="card h-100 shadow rounded-4 text-center border-0 bg-success-subtle" onclick="lognBackOffice()">
+          <div class="card-body p-5">
+            <div class="mb-3">
+            <i class="bi bi-building-gear fs-1 text-success"></i>
           </div>
-          <div class="d-grid">
-            <button type="submit" class="btn btn-primary py-2">Log In</button>
+            <h4 class="fw-bold">Admin Office</h4>
+             <p class="text-muted small mt-2">
+            Manage inventory, suppliers, purchasing, and documentation.
+          </p>
+            <span class="badge bg-success mt-2">Back Office</span>
           </div>
-          <div class="mt-2 text-center">
-            <small>Developed by: Reil P. Padilla</small>
-          </div>
-        </form>
+        </div>
       </div>
     </div>
   </div>
+ 
   <script src="assets/plugins/bootstrap/scripts/jquery.min.js"></script>
   <script src="assets/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="assets/plugins/sweetalert2/sweetalert2.min.js"></script>
@@ -57,3 +100,6 @@
 </html>
 
   
+
+
+<?php include 'modal.php';  ?>

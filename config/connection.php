@@ -1,18 +1,17 @@
 <?php
     $Hostname   = ''; 
-    $servername = "192.168.101.68";
-    $database = "IAP_HELPDESK";
-    $username = "sa";
-    $password = "SB1Admin";
+    $servername = "127.0.0.1";
+    $database = "pos";
+    $username = "root";
+    $password = "";
 
     try {
-        $conn = new PDO("sqlsrv:server=$servername;database=$database;TrustServerCertificate=true", $username, $password);
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-           
-    } catch (PDOException $e) {
+
+        $conn = new PDO("mysql:host=$servername;dbname=$database;charset=utf8mb4", $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    }catch(PDOException $e){
         echo "Connection failed: " . $e->getMessage();
     }
 
-
 ?> 
-
