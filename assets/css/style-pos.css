@@ -1,0 +1,42 @@
+/* ===== POS NAVY SIDEBAR ===== */
+
+  .sidebar-pos {
+    background: #0b1f3a;
+    border-radius: 12px;
+  }
+
+  .sidebar-pos .card-body {
+    background: transparent;
+    color: #dbe7f5;
+  }
+
+  .sidebar-pos .small {
+    color: #9fb3c8 !important;
+  }
+
+  /* nav links */
+  .sidebar-pos .nav-link {
+    color: #cfe0f5;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-weight: 500;
+  }
+
+  /* hover */
+  .sidebar-pos .nav-link:hover {
+    background: #123055;
+    color: #ffffff;
+  }
+
+  /* active — keep bootstrap blue */
+  .sidebar-pos .nav-link.active {
+    background: #0d6efd;
+    color: #fff;
+  }
+
+  /* divider */
+  .sidebar-pos hr {
+    border-color: #1e3a5f;
+  }
+
+

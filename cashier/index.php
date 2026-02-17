@@ -27,10 +27,11 @@ try {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cashier</title>
+  <title>POS-Transaction</title>
   <link rel="stylesheet" href="../assets/plugins/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" type="text/css" href="../assets/plugins/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="../assets/css/adminlte.min.css">
+  <link rel="stylesheet" href="../assets/css/style-pos.css">
   <link rel="stylesheet" href="../assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <link rel="stylesheet" href="../assets/plugins/daterangepicker/daterangepicker.css">
   <link rel="stylesheet" href="../assets/plugins/bootstrap-icons/font/bootstrap-icons.css">
@@ -46,104 +47,98 @@ try {
   <link rel="icon" href="../assets/image/logo/favicon.png">
 
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
-    <div class="wrapper">
-        <nav class="main-header navbar navbar-expand bg-light">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-                </li>
-                <li class="nav-item text-info">
-                    <a href="#" class="nav-link text-center">
-                        <i class="bi bi-clock ml-4"></i>
-                        <strong class="ml-2">
-                            <span id="clock"></span>
-                            <input type="hidden" id="clockvalue">
-                        </strong>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-        <aside class="main-sidebar sidebar-dark-info elevation-5">
-            <p class="text-center brand-link">
-                <a href="index.php" style="text-decoration: none; color: inherit;">
-                    <img src="../assets/image/logo/favicon.png" alt="iServe Admin" id="profile-image"style="width: 100px; height: 100px; object-fit: cover;">
-                    <br>
-                </a>
-                <br>
-                <?php echo $user['Position']?>
-            </p>
-            <div class="sidebar">
-                <nav id="main-menu" class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false" >
-                        <li class="nav-item">
-                            <p class="text-muted">Menu</p>
-                        </li>
-                       <!--  <li class="nav-item">
-                            <a href="#" class="nav-link active" name="menu" menucode="request" data-bs-toggle="tooltip" data-bs-title="Inbox" data-bs-placement="right">
-                                <i class="nav-icon bi bi-inbox"></i>
-                                <p>Inbox</p>
-                            </a>
-                        </li> -->
-                        <li class="nav-item">
-                            <a href="#" class="nav-link active" name="menu" menucode="services">
-                                <i class="nav-icon bi bi-headset"></i>
-                                <p>Help Desk</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link" name="menu" menucode="bookings">
-                                <i class="nav-icon bi bi-archive"></i>
-                                <p>Bookings</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link" name="menu" menucode="settings" data-bs-toggle="tooltip" data-bs-title="Settings" data-bs-placement="right">
-                                <i class="nav-icon bi bi-gear"></i>
-                                <p>Settings</p>
-                            </a>
-                        </li>
-                        <hr>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link" onclick="logout()">
-                                <i class="nav-icon bi bi-box-arrow-right text-danger"></i>
-                                <p>Logout</p>
-                            </a>
-                        </li>
-                       <!--  <li class="nav-item d-flex align-items-center ms-3 mt-2">
-                          <div class="form-check m-0 ml-1">
-                            <input class="form-check-input" type="checkbox" id="theme-mode" onclick="loadTheme()">
-                            <label class="form-check-label text-white ms-2" for="theme-mode" id="theme-label">Theme</label>
-                          </div>
-                        </li> -->
-                    </ul>
-                </nav>
-            </div>
-            <input type="hidden" value="<?php echo $user['Theme'];?>" id="theme-pref">
-            <input type="hidden" value="<?php echo $user['Username'];?>" id="session-user">
-        </aside>
-    </div>
-    <div class="content-wrapper">
-      <div class="content-header">
+<body >
+  <div class="container col-md-10 my-5">
+
+    <!-- JUMBOTRON STYLE CONTAINER -->
+    <div class="position-relative p-4 text-muted bg-body border border-dashed rounded-5 shadow-sm">
+      <nav class="navbar navbar-expand bg-light rounded-3 mb-3">
         <div class="container-fluid">
-          <div class="row mb-2">
-            <div class="col-sm-6">
-              <h4 class="m-0 text-bold" id="main-title"></h4>
+          <ul class="navbar-nav align-items-center">
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="sidebarToggle">
+                <i class="fas fa-bars"></i>
+              </a>
+            </li>
+            <li class="nav-item ms-2">
+              <i class="bi bi-clock"></i>
+              <strong class="ms-2">
+                <span id="clock"></span>
+                <input type="hidden" id="clockvalue">
+              </strong>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="container-fluid" style="height: 75vh;">
+        <div class="row g-3">
+          <!-- SIDEBAR -->
+          <div class="col-lg-3 col-xl-2"  id="sidebarCol">
+            <div class="card shadow-sm sidebar-pos">
+              <div class="card-body text-center border-bottom">
+                <a href="index.php" style="text-decoration:none;">
+                  <img src="../assets/image/logo/favicon.png" id="profile-image" style="width:80px;height:80px;object-fit:cover;">
+                </a>
+                <div class="fw-semibold mt-2">
+                  <p class="mb-0">POS</p>
+                </div>
+              </div>
+
+              <!-- Menu -->
+              <div class="card-body p-2">
+                <div class="small text-muted px-2 mb-2">Menu</div>
+                <nav class="nav nav-pills flex-column gap-1" id="main-menu">
+                  <a href="#" class="nav-link active" name="menu" menucode="transaction" data-bs-toggle="tooltip" data-bs-title="Process sales">
+                    <i class="bi bi-pc-display-horizontal me-2"></i>
+                    Sales
+                  </a>
+                  <a href="#" class="nav-link" name="menu" menucode="refund" data-bs-toggle="tooltip" data-bs-title="Process refund">
+                    <i class="bi bi-arrow-return-left me-2"></i>
+                    Refunds
+                  </a>
+                  <a href="#" class="nav-link" name="menu" menucode="lookup" data-bs-toggle="tooltip" data-bs-title="Search Item">
+                    <i class="bi bi-search me-2"></i>
+                    Item Lookup
+                  </a>
+                  <a href="#" class="nav-link" name="menu" menucode="report" data-bs-toggle="tooltip" data-bs-title="End Shift Report">
+                    <i class="bi bi-receipt me-2"></i>
+                    Report
+                  </a>
+                  <hr class="my-2">
+                  <a href="#" class="nav-link" name="menu" menucode="settings" data-bs-toggle="tooltip" data-bs-title="Settings">
+                    <i class="bi bi-gear me-2"></i>
+                    Settings
+                  </a>
+                  <a href="#" class="nav-link text-danger mb-2" onclick="logout()">
+                    <i class="bi bi-box-arrow-right me-2"></i>
+                    Logout
+                  </a>
+                </nav>
+              </div>
+            </div>
+          </div>
+          <!-- CONTENT AREA -->
+          <div class="col-lg-9 col-xl-10">
+            <div class="mb-3">
+              <h4 class="fw-bold m-0" id="main-title"></h4>
+            </div>
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <div id="main-content"></div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <section class="content">
-        <div class="container-fluid" id="main-content"></div>
-      </section>
-    </div>
-    <footer class="main-footer">
-        <small>Imperial Appliance Plaza. All rights reserved.</small>
+      <!-- FOOTER -->
+      <footer class="text-center mt-4 text-muted small">
+        Developed by: Reil P. Padilla —
         <span id="current-year"></span>
-        <div class="float-right d-none d-sm-inline-block">
-        </div>
-    </footer>
-</div>
+      </footer>
+    </div>
+  </div>
+
 
 
 <script src="../assets/js/jquery.min.js"></script>
@@ -168,4 +163,6 @@ try {
 <?php include '../modal.php';?>
 </body>
 </html>
+
+
 

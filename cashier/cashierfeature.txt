@@ -1,0 +1,107 @@
+1. Sales Transaction
+
+Ring up products (scan barcode or search)
+
+Edit quantity/price
+
+Apply discounts (if allowed)
+
+Add notes to the sale
+
+View list of items in a cart
+
+Display running total
+
+2. Payment Processing
+
+Accept multiple payment types:
+
+Cash
+
+Credit/Debit card
+
+Mobile payments (e.g., GCash, PayMaya, Apple/Google Pay)
+
+Gift card/voucher
+
+Split payments
+
+Print/Email receipt
+
+3. Receipt Features
+
+Print receipt
+
+Reprint last receipt
+
+Email / SMS receipt (optional)
+
+4. Lookup & Quick Access
+
+Search product by:
+
+Barcode
+
+SKU / Item code
+
+Name
+
+Quick access buttons (popular items)
+
+5. Voids & Returns
+
+Void transaction before payment
+
+Process returns/refunds
+
+Issue store credit (if allowed)
+
+🧾 Security & Accountability
+
+Cashiers should have access limited to only what they need. Key accountability features include:
+
+6. User Login / Logout
+
+Secure login (PIN or password)
+
+Auto log-off after idle time
+
+Cashier shift change in/out
+
+7. Shift Management
+
+Start shift → cash float
+
+End shift → cash count
+
+Cashier drawer reconciliation
+
+Generate basic shift summary
+
+📊 Access to Limited References
+
+The cashier might need read-only access to:
+
+8. Inventory Lookup
+
+Current stock quantities
+
+Item price
+
+Item alerts/low stock (read only)
+
+(No ability to edit inventory)
+
+📄 Basic Reports
+
+Cashiers may need access to some basic non-sensitive reports:
+
+9. Daily Summary
+
+Total sales
+
+Total transactions
+
+Total payments per type
+
+Amount in drawer
