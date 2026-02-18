@@ -10,6 +10,12 @@ function loadSalesTransaction() {
     });
 }
 
+/*Modal Find Item*/
+function mdlFindItem() {
+    $("#mld-search-item").modal('show');
+    
+}
+
 // function load_modal(valueStudentID, valueOperation){
 //     $("#modal-add-student").modal('show');
 //     $("#frm-add-student").attr("operation", valueOperation);

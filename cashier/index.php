@@ -47,8 +47,8 @@ try {
   <link rel="icon" href="../assets/image/logo/favicon.png">
 
 </head>
-<body >
-  <div class="container col-md-10 my-5">
+<body>
+  <div class="container col-md-10  my-5">
 
     <!-- JUMBOTRON STYLE CONTAINER -->
     <div class="position-relative p-4 text-muted bg-body border border-dashed rounded-5 shadow-sm">
@@ -60,14 +60,31 @@ try {
                 <i class="fas fa-bars"></i>
               </a>
             </li>
-            <li class="nav-item ms-2">
-              <i class="bi bi-clock"></i>
-              <strong class="ms-2">
+            <li class="nav-item ms-2 d-flex align-items-center">
+              <i class="bi bi-clock me-1"></i>
+              <strong>
                 <span id="clock"></span>
                 <input type="hidden" id="clockvalue">
               </strong>
             </li>
           </ul>
+          <ul class="navbar-nav ms-auto align-items-center">
+            
+            <!-- Cashier Name -->
+            <li class="nav-item me-3">
+              <label for="cashier-name" class="form-label fw-semibold small mb-0 text-end">Cashier</label>
+              <input type="text" name="cashier-name" id="cashier-name" value="Reil P. Padilla" class="form-control form-control-plaintext bg-white" disabled style="width: 180px;">
+            </li>
+
+            <!-- Cashier ID -->
+            <li class="nav-item">
+              <label for="cashier-id" class="form-label fw-semibold small mb-0 text-end">ID</label>
+              <input type="text" name="cashier-id" id="cashier-id" value="0001023" class="form-control form-control-plaintext text-center bg-white" disabled style="width: 100px;">
+            </li>
+
+          </ul>
+
+
         </div>
       </nav>
 
@@ -81,7 +98,7 @@ try {
                   <img src="../assets/image/logo/favicon.png" id="profile-image" style="width:80px;height:80px;object-fit:cover;">
                 </a>
                 <div class="fw-semibold mt-2">
-                  <p class="mb-0">POS</p>
+                  <p class="mb-0">POS 1</p>
                 </div>
               </div>
 
@@ -97,7 +114,7 @@ try {
                     <i class="bi bi-arrow-return-left me-2"></i>
                     Refunds
                   </a>
-                  <a href="#" class="nav-link" name="menu" menucode="lookup" data-bs-toggle="tooltip" data-bs-title="Search Item">
+                  <a href="#" class="nav-link" name="menu" data-bs-toggle="tooltip" data-bs-title="Search Item" onclick="mdlFindItem()">
                     <i class="bi bi-search me-2"></i>
                     Item Lookup
                   </a>
