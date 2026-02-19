@@ -317,8 +317,8 @@
             <label for="backoffice-username">Username</label>
           </div>
           <div class="form-floating mb-3 position-relative">
-            <input type="password" name="backoffice-newpassword" id="backoffice-newpassword" class="form-control pe-5"  required>
-            <label for="backoffice-newpassword">Password</label>
+            <input type="password" name="backoffice-password" id="backoffice-password" class="form-control pe-5"  required>
+            <label for="backoffice-password">Password</label>
             <i class="bi bi-eye-slash position-absolute top-50 end-0 translate-middle-y me-3" 
                id="backoffice-showpass" style="cursor: pointer;"></i>
           </div>
@@ -349,6 +349,40 @@
 
 
 <script>
+  /*Script form login for cashier*/
+  $("#frm-login-backoffice").on("submit", function (event) {
+     event.preventDefault();
+     var $frm = $(this);
+     var Username = $frm.find("input[name='backoffice-username']").val().trim();
+     var Password = $frm.find("input[name='backoffice-password']").val().trim();
+     $.post("actions/login_cashier.php", { 
+       Username: Username, 
+       Password: Password 
+     }, function (data) {
+       var response = JSON.parse(data);
+       if (response.response === "OK") {
+        $("#backoffice-alert-message").addClass("d-none").text(response.message || "Invalid Account");
+         $frm[0].reset();
+         if ($("#save-login").is(":checked")) {
+           setCookie("Username", Username, 7);
+           setCookie("Password", Password, 7);
+         }
+         $("#modal-login-backoffice").modal("hide");
+
+         var role = parseInt(response.role);
+         if (role === 2) {
+           window.location.assign("back_office/index.php");
+         } else {
+           window.location.assign("portal.php");
+         }
+       } else {
+         $("#backoffice-alert-message").removeClass("d-none").text(response.message || "Invalid Account");
+       }
+     });
+  });
+
+
+
  $("#backoffice-showpass").on("click", function () {
      const $input = $("#backoffice-newpassword");
      const $icon  = $(this);
