@@ -71,7 +71,7 @@ try {
         </div>
       </nav>
 
-      <div class="container-fluid" style="height: 75vh;">
+      <div class="container-fluid">
         <div class="row g-3">
           <!-- SIDEBAR -->
           <div class="col-lg-3 col-xl-2"  id="sidebarCol">

@@ -8,6 +8,12 @@ if (!isset($_SESSION['RowNum'])) {
     header('Location: ../portal.php');
     exit();
 }
+
+if (!isset($_SESSION['RowNum'])) {
+    header("Location: ../404.php");
+    exit();
+}
+
 $User = $_SESSION['RowNum'];
 
 try {
@@ -69,7 +75,10 @@ try {
             </li>
           </ul>
           <ul class="navbar-nav ms-auto align-items-center">
-            
+            <li class="nav-item me-3">
+              <label for="cashier-name" class="form-label fw-semibold small mb-0 text-end">Terminal ID</label>
+              <input type="text" name="terminal-id" id="terminal-id" value="031292" class="form-control form-control-plaintext bg-white" disabled style="width: 180px;">
+            </li>
             <!-- Cashier Name -->
             <li class="nav-item me-3">
               <label for="cashier-name" class="form-label fw-semibold small mb-0 text-end">Cashier</label>
@@ -78,7 +87,7 @@ try {
 
             <!-- Cashier ID -->
             <li class="nav-item">
-              <label for="cashier-id" class="form-label fw-semibold small mb-0 text-end">ID</label>
+              <label for="cashier-id" class="form-label fw-semibold small mb-0 text-end">Cashier ID</label>
               <input type="text" name="cashier-id" id="cashier-id" value="0001023" class="form-control form-control-plaintext text-center bg-white" disabled style="width: 100px;">
             </li>
 

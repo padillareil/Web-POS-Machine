@@ -1,19 +1,32 @@
 <form id="frm-find-item" class="mb-3">
   <div class="row g-3 align-items-end">
     <div class="col-md-6">
-      <label for="search-item" class="form-label fw-semibold small">Barcode / Item (F3)</label>
-      <input type="search" name="search-item" id="search-item"  class="form-control border-primary" placeholder="********************************************" autocomplete="off">
+      <label for="search-item" class="form-label fw-semibold small">
+        Barcode / Item <span class="text-muted">(F3)</span>
+      </label>
+      <input type="search" name="search-item" id="search-item" class="form-control border-primary" placeholder="Scan barcode or search item..." autocomplete="off">
     </div>
-   <div class="col-md-2">
-   </div>
+
+    <!-- Spacer -->
+    <div class="col-md-2"></div>
+
+    <!-- Customer -->
     <div class="col-md-2">
-      <label for="customername" class="form-label fw-semibold small">Customer</label>
-      <input type="text" name="customername" id="customername"  class="form-control border-primary" placeholder="Customer Name">
+      <label for="customername" class="form-label fw-semibold small">
+        Customer
+      </label>
+      <input type="text" name="customername" id="customername" class="form-control border-primary" placeholder="Customer Name">
     </div>
+
+    <!-- Date & Transaction Status -->
     <div class="col-md-2">
-      <label for="current-date" class="form-label fw-semibold small">Date</label>
-      <input type="date" name="current-date" id="current-date" class="form-control form-control-plaintext bg-white" disabled value="<?= date('Y-m-d') ?>">
+      <label for="current-date" class="form-label fw-semibold small">
+        Date
+      </label>
+      <input type="date" name="current-date" id="current-date" class="form-control form-control-plaintext bg-white" value="<?= date('Y-m-d') ?>" disabled>
     </div>
+    
+
   </div>
 </form>
 
@@ -106,27 +119,41 @@
             <button class="btn btn-info w-100 py-3" title="Re-print receipt">
               <i class="bi bi-printer fa-lg mb-1"></i><br>
               Reprint
-              <div class="small opacity-75">F6</div>
+              <div class="small opacity-75">F5</div>
             </button>
           </div>
           <div class="col-4">
             <button class="btn btn-danger w-100 py-3" title="Clear Transaction">
               <i class="bi bi-trash fa-lg mb-1"></i><br>
               Clear
+              <div class="small opacity-75">F6</div>
+            </button>
+          </div>
+          <div class="col-4">
+            <button class="btn bg-gradient-orange w-100 py-3"  title="Suspend Sales">
+              <i class="fa fa-pause fa-lg mb-1"></i><br>
+              Suspend
+              <div class="small opacity-75">F7</div>
+            </button>
+          </div>
+          <div class="col-4">
+            <button class="btn bg-gradient-primary w-100 py-3"  title="Suspended Sales">
+              <i class="bi bi-ban fa-lg mb-1"></i><br>
+              Suspended Sales
               <div class="small opacity-75">F8</div>
             </button>
           </div>
           <div class="col-4">
-            <button class="btn bg-gradient-orange w-100 py-3"  title="Suspend Transaction">
-              <i class="fa fa-pause fa-lg mb-1"></i><br>
-              Suspend
+            <button class="btn bg-gradient-purple w-100 py-3"  title="Break">
+              <i class="bi bi-stopwatch fa-lg mb-1"></i><br>
+              Break
               <div class="small opacity-75">F9</div>
             </button>
           </div>
           <div class="col-4">
-            <button class="btn bg-gradient-purple w-100 py-3"  title="Suspend Transaction">
-              <i class="bi bi-stopwatch fa-lg mb-1"></i><br>
-              Break
+            <button class="btn bg-gradient-red w-100 py-3"  title="Void Item">
+              <i class="bi bi-dash-circle fa-lg mb-1"></i><br>
+              Void
               <div class="small opacity-75">F10</div>
             </button>
           </div>
@@ -134,7 +161,7 @@
             <button class="btn bg-gradient-secondary w-100 py-3"  title="Suspend Transaction">
               <i class="bi bi-building-fill-gear fa-lg mb-1"></i><br>
               Back Office
-              <div class="small opacity-75">F1</div>
+              <div class="small opacity-75">F11</div>
             </button>
           </div>
         </div>

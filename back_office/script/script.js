@@ -31,10 +31,10 @@ $(document).ready(function() {
         $mainbreadcrumb = `<li class="breadcrumb-item active"></li>`;
         $file = "dirs/dashboard/dashboard.php";
         break;
-      case "services":
+      case "item_registration":
         $maintitle = "";
         $mainbreadcrumb = `<li class="breadcrumb-item active"></li>`;
-        $file = "dirs/services/services.php";
+        $file = "dirs/item_registration/item_registration.php";
         break;
       case "bookings":
         $maintitle = "";

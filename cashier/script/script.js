@@ -232,7 +232,7 @@ $(document).ready(function() {
     function logout() {
      $.post("../actions/logout.php", {}, function(data) {
          if ($.trim(data) == "OK") {
-             window.location.assign("index.php");
+             window.location.assign("../portal.php");
          }
      });
    }

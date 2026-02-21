@@ -16,6 +16,41 @@ function mdlFindItem() {
     
 }
 
+/*Function for Key console to start transaction*/
+$(document).on('keydown', function(e) {
+    // F3 key
+    if (e.which === 114) { // F3 keycode = 114
+        e.preventDefault(); // prevent browser default (find in page)
+        $('#search-item').focus().select(); // focus + select text
+    }
+});
+
+
+/*Function short cut key for search item*/
+$(document).on('keydown', function(e) {
+    // Ctrl + S
+    if (e.ctrlKey && e.which === 83) { // 83 = S key
+        e.preventDefault(); // prevent browser save dialog
+        $('#mld-search-item').modal('show');
+        $('#mld-search-item').on('shown.bs.modal', function () {
+            $(this).find('input:first').focus();
+        });
+    }
+});
+
+
+/*Function to break transction for a while*/
+/*$(document).on('keydown', function(e) {
+    // Ctrl + S
+    if (e.ctrlKey && e.which === 83) { // 83 = S key
+        e.preventDefault(); // prevent browser save dialog
+        $('#mld-search-item').modal('show');
+        $('#mld-search-item').on('shown.bs.modal', function () {
+            $(this).find('input:first').focus();
+        });
+    }
+});
+*/
 // function load_modal(valueStudentID, valueOperation){
 //     $("#modal-add-student").modal('show');
 //     $("#frm-add-student").attr("operation", valueOperation);
