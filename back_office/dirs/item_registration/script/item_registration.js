@@ -12,3 +12,7 @@ function loadItem_Registration() {
 }
 
 
+/*Function add item registration*/
+function mdlItemRegister() {
+    $("#mld-item-registration").modal("show");
+}

@@ -36,7 +36,7 @@
 
   <!-- Ordered Products Table -->
   <div class="col-md-8">
-    <div class="card shadow-sm overscroll-auto" style="height: 60vh;">
+    <div class="card shadow-sm overscroll-auto">
       <div class="card-body">
         <div class="table-responsive">
           <table class="table table-striped align-middle">
@@ -79,6 +79,10 @@
 
   <!-- Product Description & Action Buttons -->
   <div class="col-md-4">
+    <label for="customer-id" class="form-label fw-semibold small">
+      Customer ID
+    </label>
+    <input type="text" name="customer-id" id="customer-id" class="form-control bg-white" value="00002345312301322924" disabled>
     <div class="card shadow-sm d-flex flex-column" style="height: 60vh;">
 
       <!-- BODY -->
@@ -138,7 +142,6 @@
           </div>
           <div class="col-4">
             <button class="btn bg-gradient-primary w-100 py-3"  title="Suspended Sales">
-              <i class="bi bi-ban fa-lg mb-1"></i><br>
               Suspended Sales
               <div class="small opacity-75">F8</div>
             </button>

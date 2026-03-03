@@ -97,7 +97,7 @@ try {
         </div>
       </nav>
 
-      <div class="container-fluid" style="height: 75vh;">
+      <div class="container-fluid">
         <div class="row g-3">
           <!-- SIDEBAR -->
           <div class="col-lg-3 col-xl-2"  id="sidebarCol">
@@ -146,7 +146,7 @@ try {
           </div>
           <!-- CONTENT AREA -->
           <div class="col-lg-9 col-xl-10">
-            <div class="mb-3">
+            <div class="mb-1">
               <h4 class="fw-bold m-0" id="main-title"></h4>
             </div>
             <div class="card shadow-sm">

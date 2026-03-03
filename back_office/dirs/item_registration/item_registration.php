@@ -1,20 +1,13 @@
 <div class="card shadow-sm">
 	<div class="card-header d-flex flex-wrap align-items-center justify-content-between gap-2">
-
-	  <!-- Left Section: Primary Action -->
 	  <div class="d-flex align-items-center gap-2">
-	    <button type="button" class="btn btn-success btn-sm">
-	      Register Item
-	    </button>
-	    <!-- Search Item -->
+	    <button type="button" class="btn btn-success btn-sm" onclick="mdlItemRegister()">Add Item</button>
 	    <input type="search" name="search-item" id="search-item" class="form-control form-control-sm" placeholder="Search Item..." style="width: 200px;">
-	    <!-- Filter by Brand -->
 	    <select class="form-select form-select-sm"  style="width: 180px;" title="Brand">
 	      <option selected disabled>Brand</option>
 	      <option>Brand A</option>
 	      <option>Brand B</option>
 	    </select>
-	  <!-- Right Section: Menu Tools -->
 	    <button type="button" class="btn btn-sm" title="Refresh List" onclick="loadItem_Registration()">
 	      Refresh
 	    </button>
@@ -38,8 +31,6 @@
 	      </ul>
 	    </div>
 	  </div>
-
-
 	</div>
 	<div class="card-body overscroll-auto" style="height: 60vh;">
 		<div id="load_itemRegistration"></div>
@@ -47,9 +38,10 @@
 	<div class="card-footer">
 		<button type="button" class="btn btn-outline-success" id="btn-prev">Previous</button>
 		<button type="button" class="btn btn-outline-success" id="btn-next">Next</button>
-
 	</div>
 </div>
 
 
 <script src="dirs/item_registration/script/item_registration.js"></script>
+
+<?php include 'modal.php';  ?>
