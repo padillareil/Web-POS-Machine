@@ -166,7 +166,13 @@
                     <div class="col-md-4">
                       <label class="form-label">Default Warehouse</label>
                       <select class="form-select" id="warehouse">
-                        <option value="">Select Warehouse</option>
+                        <option value="GDWHS">Good Warehouse</option>
+                        <option value="DFWHS">Defective Warehouse</option>
+                        <option value="SVWHS">Service Warehouse</option>
+                        <option value="CVWHS">Caravan Warehouse</option>
+                        <option value="DSWHS">Display Warehouse</option>
+                        <option value="RPWHS">Reposes Warehouse</option>
+
                       </select>
                     </div>
                     <div class="col-md-4">

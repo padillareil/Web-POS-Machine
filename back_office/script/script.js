@@ -36,11 +36,13 @@ $(document).ready(function() {
         $mainbreadcrumb = `<li class="breadcrumb-item active"></li>`;
         $file = "dirs/item_registration/item_registration.php";
         break;
-      case "bookings":
+      case "purchase_order":
         $maintitle = "";
         $mainbreadcrumb = `<li class="breadcrumb-item active"></li>`;
-        $file = "dirs/bookings/bookings.php";
+        $file = "dirs/purchasing/purchase_order/purchase_order.php";
         break;
+
+
 
         
       case "branch_setup":
@@ -58,6 +60,9 @@ $(document).ready(function() {
         $mainbreadcrumb = `<li class="breadcrumb-item active">Settings</li>`;
         $file = "dirs/settings/settings.php";
         break;
+
+
+
       default:
         return;
     }

@@ -164,7 +164,7 @@ try {
       </footer>
     </div>
   </div>
-
+  
 
 
 <script src="../assets/js/jquery.min.js"></script>
