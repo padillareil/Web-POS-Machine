@@ -40,10 +40,12 @@ $(document).ready(function() {
         $maintitle = "";
         $mainbreadcrumb = `<li class="breadcrumb-item active"></li>`;
         $file = "dirs/purchasing/purchase_order/purchase_order.php";
-        break;
-
-
-
+      break;
+      case "goods-receipt":
+        $maintitle = "";
+        $mainbreadcrumb = `<li class="breadcrumb-item active"></li>`;
+        $file = "dirs/purchasing/goodsreceipt/goodsreceipt.php";
+      break;
         
       case "branch_setup":
         $maintitle = "";

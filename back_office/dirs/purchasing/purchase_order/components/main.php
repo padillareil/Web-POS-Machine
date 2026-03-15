@@ -2,20 +2,44 @@
 	<div class="card shadow-sm bg-secondary">
 		<!-- HEADER -->
 		<div class="card-header d-flex align-items-center bg-dark-subtle">
-		    <h5 class="mb-0">Create Purchase Order</h5>
+		    <h5 class="mb-0">Create Purchase Order (Under Development)</h5>
 		    <div class="ms-auto btn-group btn-group-sm" role="group" aria-label="PO Actions">
 		    	<button type="button" class="btn btn-dark" onclick="loadPurchase_Orders()">
 		    	    <i class="bi bi-arrow-clockwise"></i> Refresh
 		    	</button>
-		        <button type="button" class="btn btn-primary">
-		            <i class="bi bi-list-ul"></i> PO List
-		        </button>
-		        <button type="button" class="btn bg-pink">
-		            <i class="bi bi-list-ul"></i> Drafts
-		        </button>
-		        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalAddSupplier">
-		            <i class="bi bi-person-plus"></i> Add Supplier
-		        </button>
+		        <!-- PO Drafts Dropdown -->
+		        <div class="btn-group">
+		            <button type="button" class="btn bg-pink dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
+		                <i class="bi bi-list-ul me-1"></i> PO Drafts
+		            </button>
+		            <ul class="dropdown-menu dropdown-menu-end">
+		                <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="bi bi-card-list me-2"></i> PO List</a></li>
+		                <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="bi bi-pencil-square me-2"></i> PO Drafts</a></li>
+		            </ul>
+		        </div>
+		        <!-- Vendor Dropdown -->
+		        <div class="btn-group">
+		            <button type="button" class="btn btn-warning dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
+		                <i class="bi bi-person me-1"></i> Vendor
+		            </button>
+		            <ul class="dropdown-menu dropdown-menu-end">
+		                <li>
+		                    <a class="dropdown-item d-flex align-items-center" href="#" onclick="mdladdSupplier()">
+		                        <i class="bi bi-person-plus-fill me-2"></i> Add Vendor
+		                    </a>
+		                </li>
+		                <li>
+		                    <a class="dropdown-item d-flex align-items-center" href="#">
+		                        <i class="bi bi-pencil-square me-2"></i> Vendor Draft
+		                    </a>
+		                </li>
+		                <li>
+		                    <a class="dropdown-item d-flex align-items-center" href="#">
+		                        <i class="bi bi-people me-2"></i> Vendor List
+		                    </a>
+		                </li>
+		            </ul>
+		        </div>
 		        <button type="button" class="btn bg-purple" data-bs-toggle="modal" data-bs-target="#modalAddItem">
 		            <i class="bi bi-box-seam"></i> Add Item
 		        </button>
@@ -33,9 +57,15 @@
 			<!-- PURCHASE ORDER INFORMATION -->
 			<div class="mb-2">
 			    <h6 class="mb-3 text-white">Purchase Order Information</h6>
-			    <div class="col-md-2 mb-2">
-			        <label class="form-label">PO Number</label>
-			        <input type="text" class="form-control form-control-sm" readonly placeholder="Purchase Order Number">
+			    <div class="row justify-content-between d-flex">
+			    	<div class="col-md-2 mb-2">
+			    	    <label class="form-label">PO Number</label>
+			    	    <input type="text" class="form-control form-control-sm form-control-plaintext" id="purchase_order_num" disabled required>
+			    	</div>
+			    	<div class="col-md-1 mb-2">
+			    	    <label class="form-label">Date</label>
+			    	    <input type="date" name="current-date" id="current-date" class="form-control form-control-sm text-center form-control-plaintext bg-white" value="<?= date('Y-m-d') ?>" disabled>
+			    	</div>
 			    </div>
 			    <div class="row g-3">
 			       
@@ -56,21 +86,21 @@
 			            </select>
 			        </div>
 			        <div class="col-md-2">
-			            <label class="form-label">Supplier:</label>
-			            <select class="form-select form-select-sm border-primary">
-			                <option>Select Supplier</option>
+			            <label class="form-label">Vendor:</label>
+			            <select class="form-select form-select-sm border-primary" id="vendors">
+			                <option>Select</option>
 			            </select>
 			        </div>
 			        <div class="col-md-2">
 			            <label class="form-label">Branch:</label>
-			            <select class="form-select form-select-sm border-primary">
-			                <option>Main Branch</option>
+			            <select class="form-select form-select-sm border-primary" id="branches">
+			                <option selected value="">Select</option>
 			            </select>
 			        </div>
 			        <div class="col-md-2">
 			            <label class="form-label">Warehouse:</label>
 			            <select class="form-select form-select-sm border-primary">
-			                <option value="">Select Warehouse</option>
+			                <option value="">Select</option>
 			                <option value="GOODWHS">Good Warehouse</option>
 			                <option value="REPOWHS">Reposes Warehouse</option>
 			                <option value="DFCTWHS">Damaged Warehouse</option>
@@ -161,10 +191,17 @@
 
 		<!-- FOOTER -->
 		<div class="card-footer text-end">
-			<button class="btn btn-success btn-sm" type="submit">Save Purchase Order</button>
-			<button class="btn bg-warning-subtle btn-sm" type="button">Save as Draft</button>
+			<button class="btn btn-success btn-sm" type="submit">
+				<i class="bi bi-check-circle"></i> Save Purchase Order
+			</button>
+			<button class="btn bg-warning-subtle btn-sm" type="button">
+				<i class="bi bi-save"></i>	Save Draft
+			</button>
 			<button class="btn btn-danger btn-sm" type="reset">Clear</button>
 		</div>
 
 	</div>
 </form>
+
+
+			

@@ -48,7 +48,7 @@ try {
 
 </head>
 <body>
-  <div class="container col-md-11  my-5">
+  <div class="container col-md-11  my-2">
 
     <!-- JUMBOTRON STYLE CONTAINER -->
     <div class="position-relative p-4 text-muted bg-body border border-dashed rounded-5 shadow-sm">
@@ -411,7 +411,7 @@ try {
           </div>
           <!-- CONTENT AREA -->
           <div class="col-lg-9 col-xl-10">
-            <div class="mb-3">
+            <div class="mb-1">
               <h4 class="fw-bold m-0" id="main-title"></h4>
             </div>
             <div class="card shadow-sm">
