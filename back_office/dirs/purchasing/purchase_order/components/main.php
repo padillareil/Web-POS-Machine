@@ -120,7 +120,7 @@
 			<div class="mb-3 d-flex justify-content-between align-items-center">
 				<h6 class="text-light">Purchased Items</h6>
 				<button type="button" class="btn btn-primary btn-sm">
-					+ Add Item
+					<i class="bi bi-plus"></i> Add Item
 				</button>
 			</div>
 

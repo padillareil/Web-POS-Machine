@@ -167,8 +167,8 @@
 			<!-- RECEIVED ITEMS -->
 			<div class="mb-3 d-flex justify-content-between align-items-center">
 			    <h6 class="text-light">Received Items</h6>
-			    <button type="button" class="btn btn-primary btn-sm">
-			        + Add Item
+			    <button type="button" class="btn btn-primary btn-sm" onclick="addItemRow()">
+			        <i class="bi bi-plus"></i> Add Item
 			    </button>
 			</div>
 
@@ -191,40 +191,18 @@
 					</thead>
 
 					<tbody id="gr-items">
-						<tr>
-							<td>
-								<input type="text" class="form-control border-primary form-control-sm rounded-1">
-							</td>
-							<td>
-								<input type="text" class="form-control border-primary form-control-sm rounded-1">
-							</td>
-							<td>
-								<input type="number" class="form-control form-control-sm text-end" readonly value="0">
-							</td>
-							<td>
-								<input type="number" class="form-control border-primary form-control-sm text-end" value="0">
-							</td>
-							<td>
-								<input type="number" class="form-control border-primary form-control-sm text-end" value="0">
-							</td>
-							<td>
-								<input type="number" class="form-control border-primary form-control-sm text-end" value="0">
-							</td>
-							<td>
-								<input type="number" step="0.01" class="form-control border-primary form-control-sm text-end" value="0.00">
-							</td>
-							<td class="text-end">0.00</td>
-							<td>
-								<input type="text" class="form-control border-primary form-control-sm">
-							</td>
-							<td>
-								<input type="date" class="form-control border-primary form-control-sm">
-							</td>
-							<td class="text-center">
-								<button class="btn btn-outline-danger btn-sm" type="button">
-									<i class="bi bi-trash"></i>
-								</button>
-							</td>
+						<tr id="empty-row">
+						  <td colspan="11" class="text-center py-5">
+						    <div class="d-flex flex-column align-items-center text-muted">
+						      <div class="mb-3" style="font-size: 40px;">
+						        <i class="bi bi-file-earmark-text"></i>
+						      </div>
+						      <div class="fw-semibold">Add Item</div>
+						      <div class="small opacity-75">
+						        Click the Add Item button to add row.
+						      </div>
+						    </div>
+						  </td>
 						</tr>
 					</tbody>
 				</table>
@@ -234,32 +212,32 @@
 			<div class="row mt-2">
 				<div class="col-md-2">
 					<label class="form-label small">Total Received</label>
-					<input type="text" class="form-control form-control-sm text-end" value="0" readonly>
+					<input type="text" class="form-control form-control-sm text-end" value="0" readonly id="total_received">
 				</div>
 
 				<div class="col-md-2">
 					<label class="form-label small">Total Accepted</label>
-					<input type="text" class="form-control form-control-sm text-end" value="0" readonly>
+					<input type="text" class="form-control form-control-sm text-end" value="0" readonly id="total_accepted">
 				</div>
 
 				<div class="col-md-2">
 					<label class="form-label small">Total Defective</label>
-					<input type="text" class="form-control form-control-sm text-end" value="0" readonly>
+					<input type="text" class="form-control form-control-sm text-end" value="0" readonly id="total_defective">
 				</div>
 
 				<div class="col-md-2">
 					<label class="form-label small">Subtotal</label>
-					<input type="text" class="form-control form-control-sm text-end" value="0.00" readonly>
+					<input type="text" class="form-control form-control-sm text-end" value="0.00" readonly id="subtotal">
 				</div>
 
 				<div class="col-md-2">
 					<label class="form-label small">Adjustment</label>
-					<input type="number" class="form-control border-primary form-control-sm text-end" value="0.00">
+					<input type="number" class="form-control border-primary form-control-sm text-end" value="0.00" id="adjustment">
 				</div>
 
 				<div class="col-md-2">
 					<label class="form-label fw-bold small">Grand Total</label>
-					<input type="text" class="form-control form-control-sm text-end fw-bold" value="0.00" readonly>
+					<input type="text" class="form-control form-control-sm text-end fw-bold" value="0.00" readonly id="grand_total">
 				</div>
 			</div>
 		</div>
@@ -282,3 +260,123 @@
 
 	</div>
 </form>
+
+<script>
+
+
+/*Function add new rows*/
+function addItemRow() {
+    // Remove empty row if exists
+    if ($("#empty-row").length) {
+        $("#empty-row").remove();
+    }
+
+    let row = `
+        <tr>
+            <td>
+                <input type="text" class="form-control border-primary form-control-sm rounded-1 item-code">
+            </td>
+            <td>
+                <input type="text" class="form-control border-primary form-control-sm rounded-1 item-name">
+            </td>
+            <td>
+                <input type="number" class="form-control form-control-sm text-end received" value="0">
+            </td>
+            <td>
+                <input type="number" class="form-control border-primary form-control-sm text-end accepted" value="0">
+            </td>
+            <td>
+                <input type="number" class="form-control border-primary form-control-sm text-end defective" value="0">
+            </td>
+            <td>
+                <input type="number" class="form-control border-primary form-control-sm text-end extra" value="0">
+            </td>
+            <td>
+                <input type="number" step="0.01" class="form-control border-primary form-control-sm text-end cost" value="0.00">
+            </td>
+            <td class="text-end total">0.00</td>
+            <td>
+                <input type="text" class="form-control border-primary form-control-sm remarks">
+            </td>
+            <td>
+                <input type="date" class="form-control border-primary form-control-sm expiry">
+            </td>
+            <td class="text-center">
+                <button class="btn btn-outline-danger btn-remove btn-sm" type="button">
+                    <i class="bi bi-trash"></i>
+                </button>
+            </td>
+        </tr>
+    `;
+
+    $("#gr-items").append(row);
+}
+
+$(document).on("click", ".btn-remove", function () {
+    $(this).closest("tr").remove();
+    if ($("#gr-items tr").length === 0) {
+        let emptyRow = `
+        <tr id="empty-row">
+          <td colspan="11" class="text-center py-5">
+            <div class="d-flex flex-column align-items-center text-muted">
+              <div class="mb-3" style="font-size: 40px;">
+                <i class="bi bi-file-earmark-text"></i>
+              </div>
+              <div class="fw-semibold">Add Item</div>
+              <div class="small opacity-75">
+                Click the Add Item button to add row.
+              </div>
+            </div>
+          </td>
+        </tr>
+        `;
+        $("#gr-items").html(emptyRow);
+    }
+});
+
+$(document).on("input", ".received, .accepted, .defective, .cost, #adjustment", function () {
+    computeGR();
+});
+
+
+function computeGR() {
+    let totalReceived = 0;
+    let totalAccepted = 0;
+    let totalDefective = 0;
+    let subtotal = 0;
+
+    $("#gr-items tr").each(function () {
+
+        let received = parseFloat($(this).find(".received").val()) || 0;
+        let accepted = parseFloat($(this).find(".accepted").val()) || 0;
+        let defective = parseFloat($(this).find(".defective").val()) || 0;
+        let cost = parseFloat($(this).find(".cost").val()) || 0;
+
+        if (accepted + defective > received) {
+            $(this).find(".accepted, .defective").addClass("is-invalid");
+        } else {
+            $(this).find(".accepted, .defective").removeClass("is-invalid");
+        }
+
+        let lineTotal = accepted * cost;
+
+        $(this).find(".total").text(lineTotal.toFixed(2));
+
+        totalReceived += received;
+        totalAccepted += accepted;
+        totalDefective += defective;
+        subtotal += lineTotal;
+    });
+
+    let adjustment = parseFloat($("#adjustment").val()) || 0;
+    let grandTotal = subtotal + adjustment;
+
+    $("#total_received").val(totalReceived);
+    $("#total_accepted").val(totalAccepted);
+    $("#total_defective").val(totalDefective);
+    $("#subtotal").val(subtotal.toFixed(2));
+    $("#grand_total").val(grandTotal.toFixed(2));
+}
+
+
+</script>
