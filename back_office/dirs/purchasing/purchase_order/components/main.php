@@ -60,7 +60,7 @@
 			    <div class="row justify-content-between d-flex">
 			    	<div class="col-md-2 mb-2">
 			    	    <label class="form-label">PO Number</label>
-			    	    <input type="text" class="form-control form-control-sm form-control-plaintext" id="purchase_order_num" disabled required>
+			    	    <input type="text" class="form-control form-control-sm" id="purchase_order_num" disabled required>
 			    	</div>
 			    	<div class="col-md-1 mb-2">
 			    	    <label class="form-label">Date</label>
@@ -191,13 +191,13 @@
 
 		<!-- FOOTER -->
 		<div class="card-footer text-end">
-			<button class="btn btn-success btn-sm" type="submit">
+			<button class="btn btn-success" type="submit">
 				<i class="bi bi-check-circle"></i> Save Purchase Order
 			</button>
-			<button class="btn bg-warning-subtle btn-sm" type="button">
+			<button class="btn bg-warning-subtle" type="button">
 				<i class="bi bi-save"></i>	Save Draft
 			</button>
-			<button class="btn btn-danger btn-sm" type="reset">Clear</button>
+			<button class="btn btn-danger" type="reset">Clear</button>
 		</div>
 
 	</div>

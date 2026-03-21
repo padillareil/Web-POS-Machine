@@ -1,14 +1,15 @@
 $(document).ready(function(){
     loadGoodsReceipt();
-    loadBranches();
-    loadVendors();
-    get_User();
 });
 
 function loadGoodsReceipt() {
     $.post("dirs/purchasing/goodsreceipt/components/main.php", {
     }, function (data){
         $("#load_GoodsReceipt").html(data);
+        loadBranches();
+        loadVendors();
+        get_User();
+        loadGoodsReceiptNumber();
     });
 }
 
@@ -66,3 +67,15 @@ function get_User(){
 }
 
 
+/*Function get gr number*/
+function loadGoodsReceiptNumber(){
+    $.post("dirs/purchasing/goodsreceipt/actions/get_grnumber.php",{
+    },function(data){
+        response = JSON.parse(data);
+        if(jQuery.trim(response.isSuccess) == "success"){
+            $("#goods_receipt_num").val(response.Data.GRNum);
+        }else{
+            alert(jQuery.trim(response.Data));
+        }
+    });
+}

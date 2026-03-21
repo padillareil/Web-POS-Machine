@@ -80,15 +80,12 @@
 			    <div class="row justify-content-between d-flex">
 			        <div class="col-md-2 mb-1">
 			            <label class="form-label">Goods Receipt No</label>
-			            <input type="text" class="form-control form-control-sm form-control-plaintext" 
-			                   id="goods_receipt_num" disabled required>
+			            <input type="text" class="form-control form-control-sm " id="goods_receipt_num" disabled required>
 			        </div>
 
 			        <div class="col-md-1 mb-1">
 			            <label class="form-label">Date</label>
-			            <input type="date" id="current-date"
-			                   class="form-control form-control-sm text-center form-control-plaintext bg-white"
-			                   value="<?= date('Y-m-d') ?>" disabled>
+			            <input type="date" id="current-date" class="form-control form-control-sm" value="<?= date('Y-m-d') ?>" disabled>
 			        </div>
 
 			        <div class="col-md-2">
@@ -173,14 +170,14 @@
 			</div>
 
 			<div class="table-responsive overscroll-auto" style="height: 28vh;">
-				<table class="table table-sm table-hover align-middle">
+				<table class="table table-bordered table-hover align-middle">
 					<thead class="table-light">
 						<tr>
 						    <th style="width:150px;">Item Code</th>
 						    <th>Item Name</th>
 						    <th style="width:80px;" class="text-end">Ordered</th>
 						    <th style="width:80px;" class="text-end">Received</th>
-						    <th style="width:80px;" class="text-end">Accepted</th>
+						    <th style="width:80px;" class="text-end">Good</th>
 						    <th style="width:80px;" class="text-end">Defective</th>
 						    <th style="width:120px;" class="text-end">Unit Cost</th>
 						    <th style="width:120px;" class="text-end">Total</th>
@@ -216,7 +213,7 @@
 				</div>
 
 				<div class="col-md-2">
-					<label class="form-label small">Total Accepted</label>
+					<label class="form-label small">Total Good Condition</label>
 					<input type="text" class="form-control form-control-sm text-end" value="0" readonly id="total_accepted">
 				</div>
 
@@ -244,16 +241,16 @@
 
 		<!-- FOOTER -->
 		<div class="card-footer text-end">
-			<button class="btn btn-success btn-sm" type="submit">
+			<button class="btn btn-success" type="submit">
 				<i class="bi bi-check-circle"></i> Post Receipt
 			</button>
-			<button class="btn bg-warning-subtle btn-sm" type="button">
+			<button class="btn bg-warning-subtle" type="button">
 				<i class="bi bi-save"></i> Save Draft
 			</button>
-			<button class="btn btn-info btn-sm" type="button">
+			<button class="btn btn-info" type="button">
 				<i class="bi bi-arrow-return-left"></i> Return Items
 			</button>
-			<button class="btn btn-danger btn-sm" type="reset">
+			<button class="btn btn-danger" type="reset">
 				<i class="bi bi-x-circle"></i> Clear
 			</button>
 		</div>
@@ -266,30 +263,27 @@
 
 /*Function add new rows*/
 function addItemRow() {
-    // Remove empty row if exists
-    if ($("#empty-row").length) {
-        $("#empty-row").remove();
-    }
+    $("#empty-row").remove();
 
     let row = `
         <tr>
             <td>
-                <input type="text" class="form-control border-primary form-control-sm rounded-1 item-code">
+                <input type="text" class="form-control border-primary form-control-sm item-code">
             </td>
             <td>
-                <input type="text" class="form-control border-primary form-control-sm rounded-1 item-name">
+                <input type="text" class="form-control border-primary form-control-sm item-name">
             </td>
             <td>
-                <input type="number" class="form-control form-control-sm text-end received" value="0">
+                <input type="number" class="form-control form-control-sm text-end" value="0" >
             </td>
-            <td>
-                <input type="number" class="form-control border-primary form-control-sm text-end accepted" value="0">
-            </td>
+	    	<td>
+	    	    <input type="number" class="form-control border-primary form-control-sm text-end received" value="0">
+    		</td>
+    		<td>
+    		    <input type="number" class="form-control border-primary form-control-sm text-end good" value="0">
+    		</td>
             <td>
                 <input type="number" class="form-control border-primary form-control-sm text-end defective" value="0">
-            </td>
-            <td>
-                <input type="number" class="form-control border-primary form-control-sm text-end extra" value="0">
             </td>
             <td>
                 <input type="number" step="0.01" class="form-control border-primary form-control-sm text-end cost" value="0.00">
@@ -334,7 +328,8 @@ $(document).on("click", ".btn-remove", function () {
     }
 });
 
-$(document).on("input", ".received, .accepted, .defective, .cost, #adjustment", function () {
+/*Version 1 of inputs*/
+$(document).on("input", ".received, .total, .good, .defective, .cost, #adjustment", function () {
     computeGR();
 });
 
@@ -346,24 +341,23 @@ function computeGR() {
     let subtotal = 0;
 
     $("#gr-items tr").each(function () {
-
         let received = parseFloat($(this).find(".received").val()) || 0;
-        let accepted = parseFloat($(this).find(".accepted").val()) || 0;
+        let good = parseFloat($(this).find(".good").val()) || 0;
         let defective = parseFloat($(this).find(".defective").val()) || 0;
         let cost = parseFloat($(this).find(".cost").val()) || 0;
 
-        if (accepted + defective > received) {
-            $(this).find(".accepted, .defective").addClass("is-invalid");
+        // validation
+        if (good + defective > received) {
+            $(this).find(".good, .defective").addClass("is-invalid");
         } else {
-            $(this).find(".accepted, .defective").removeClass("is-invalid");
+            $(this).find(".good, .defective").removeClass("is-invalid");
         }
 
-        let lineTotal = accepted * cost;
-
+        let lineTotal = good * cost;
         $(this).find(".total").text(lineTotal.toFixed(2));
 
         totalReceived += received;
-        totalAccepted += accepted;
+        totalAccepted += good;
         totalDefective += defective;
         subtotal += lineTotal;
     });
@@ -378,5 +372,77 @@ function computeGR() {
     $("#grand_total").val(grandTotal.toFixed(2));
 }
 
+// Listen for input changes version2 
+// $(document).on("input", ".received, .good, .defective, .cost, #adjustment", function () {
+//     autoSuggestAcceptedDefective($(this).closest("tr"));
+//     computeGR();
+// });
 
+// function autoSuggestAcceptedDefective($row) {
+//     let received = parseFloat($row.find(".received").val()) || 0;
+//     let accepted = parseFloat($row.find(".accepted").val()) || 0;
+//     let defective = parseFloat($row.find(".defective").val()) || 0;
+
+//     // Auto-fill logic
+//     if ($(this).hasClass("received") || (accepted === 0 && defective === 0)) {
+//         $row.find(".accepted").val(received);
+//         $row.find(".defective").val(0);
+//     } else if ($(this).hasClass("accepted")) {
+//         $row.find(".defective").val(Math.max(received - accepted, 0));
+//     } else if ($(this).hasClass("defective")) {
+//         $row.find(".accepted").val(Math.max(received - defective, 0));
+//     }
+
+//     // Prevent sum > received
+//     accepted = parseFloat($row.find(".accepted").val()) || 0;
+//     defective = parseFloat($row.find(".defective").val()) || 0;
+//     if (accepted + defective > received) {
+//         if ($(this).hasClass("accepted")) {
+//             $row.find(".defective").val(Math.max(received - accepted, 0));
+//         } else {
+//             $row.find(".accepted").val(Math.max(received - defective, 0));
+//         }
+//     }
+// }
+
+// // Compute totals
+// function computeGR() {
+//     let totalReceived = 0;
+//     let totalAccepted = 0;
+//     let totalDefective = 0;
+//     let subtotal = 0;
+
+//     $("#gr-items tr").each(function () {
+//         let received = parseFloat($(this).find(".received").val()) || 0;
+//         let accepted = parseFloat($(this).find(".accepted").val()) || 0;
+//         let defective = parseFloat($(this).find(".defective").val()) || 0;
+//         let cost = parseFloat($(this).find(".cost").val()) || 0;
+
+//         // Validation: accepted + defective cannot exceed received
+//         if (accepted + defective > received) {
+//             $(this).find(".accepted, .defective").addClass("is-invalid");
+//         } else {
+//             $(this).find(".accepted, .defective").removeClass("is-invalid");
+//         }
+
+//         // Compute line total for accepted items only
+//         let lineTotal = accepted * cost;
+//         $(this).find(".total").text(lineTotal.toFixed(2));
+
+//         // Add to each total separately
+//         totalReceived += received;
+//         totalAccepted += accepted;
+//         totalDefective += defective;
+//         subtotal += lineTotal;
+//     });
+
+//     let adjustment = parseFloat($("#adjustment").val()) || 0;
+//     let grandTotal = subtotal + adjustment;
+
+//     $("#total_received").val(totalReceived);
+//     $("#total_accepted").val(totalAccepted);
+//     $("#total_defective").val(totalDefective);
+//     $("#subtotal").val(subtotal.toFixed(2));
+//     $("#grand_total").val(grandTotal.toFixed(2));
+// }
 </script>

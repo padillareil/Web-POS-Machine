@@ -46,6 +46,17 @@ $(document).ready(function() {
         $mainbreadcrumb = `<li class="breadcrumb-item active"></li>`;
         $file = "dirs/purchasing/goodsreceipt/goodsreceipt.php";
       break;
+      case "supplies_return":
+        $maintitle = "";
+        $mainbreadcrumb = `<li class="breadcrumb-item active"></li>`;
+        $file = "dirs/purchasing/supplies_return/supplies_return.php";
+      break;
+      case "ap_monitoring":
+        $maintitle = "";
+        $mainbreadcrumb = `<li class="breadcrumb-item active"></li>`;
+        $file = "dirs/purchasing/ap_monitoring/ap_monitoring.php";
+      break;
+
         
       case "branch_setup":
         $maintitle = "";
